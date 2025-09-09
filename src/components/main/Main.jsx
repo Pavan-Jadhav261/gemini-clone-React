@@ -48,7 +48,7 @@ const Main = () => {
     <>
       <div className="main">
         <div className="nav">
-          <p>HARIKAS AI</p>
+          <p>Gemini</p>
           <img src={assets.user_icon} alt="" />
         </div>
         <div className="main-container">
