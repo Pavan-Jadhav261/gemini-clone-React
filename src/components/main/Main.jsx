@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import main from "../../config/gemini";
@@ -39,11 +39,27 @@ function Cards() {
 const Main = () => {
   const [inputValue, setInputValue] = useState("");
   const [aiResponse, setAiResponse] = useState("");
+  const [displayMsg, setDisplayMsg] = useState("");
+  const [index, setIndex] = useState(0);
+
   const [gotResponse, setGotResponse] = useState(false);
   const handelInput = async () => {
     const response = await main(inputValue);
+    setDisplayMsg("");
+    setIndex(0);
     setAiResponse(response.response);
   };
+  console.log(aiResponse);
+
+  useEffect(() => {
+    if (index < aiResponse.length) {
+      const interval = setTimeout(() => {
+        setDisplayMsg((prev) => prev + aiResponse[index]);
+        setIndex((prev) => prev + 1);
+      }, 10);
+      return () => clearInterval(interval);
+    }
+  }, [index, aiResponse]);
   return gotResponse ? (
     <>
       <div className="main">
@@ -58,7 +74,7 @@ const Main = () => {
             </p>
           </div>
           <div className="ai-response-container">
-            <div className="ai-response">{aiResponse}</div>
+            <div className="ai-response">{displayMsg}</div>
           </div>
 
           <div className="main-bottom">

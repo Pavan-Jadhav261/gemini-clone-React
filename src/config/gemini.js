@@ -14,7 +14,7 @@ async function Chatting(userProblem) {
     model: "gemini-2.0-flash",
     contents: History,
     config: {
-      systemInstruction: "",
+      systemInstruction: "you will answer simple questions under less than 200 words, only when the user asks for detailed explanation you will answer as it is required and try to save tokens",
     },
   });
   
