@@ -49,7 +49,6 @@ const Main = () => {
     setIndex(0);
     setAiResponse(response.response);
   };
-  console.log(aiResponse);
 
   useEffect(() => {
     if (index < aiResponse.length) {
