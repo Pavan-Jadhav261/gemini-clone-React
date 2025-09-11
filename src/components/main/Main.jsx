@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import "./Main.css";
 import { assets } from "../../assets/assets";
 import main from "../../config/gemini";
-import { use } from "react";
 
 const cardContent = [
   {
@@ -52,11 +51,11 @@ const Main = () => {
 
   useEffect(() => {
     if (index < aiResponse.length) {
-      const interval = setTimeout(() => {
+      const timeOut = setTimeout(() => {
         setDisplayMsg((prev) => prev + aiResponse[index]);
         setIndex((prev) => prev + 1);
       }, 10);
-      return () => clearInterval(interval);
+      return () => clearTimeout(timeOut);
     }
   }, [index, aiResponse]);
   return gotResponse ? (
